@@ -1,0 +1,39 @@
+---
+title: "lecture_notes"
+format: html
+editor: visual
+---
+
+
+
+```{r}
+library(tidyverse)
+example <- data.frame(temperature = c(1:1000)) %>% 
+                      mutate(m = 5.7 * (10^-8) * temperature^4)
+example1_plot <- ggplot(data = example) +
+  geom_point(aes(x = temperature, y = m))
+example1_plot
+
+
+example2 <- data.frame(temperature = c(1:1000)) %>% 
+                      mutate(m = 5.7 * (10^-2) * temperature^4)
+example2_plot <- ggplot(data = example2) +
+  geom_point(aes(x = temperature, y = m))
+
+example2_plot
+```
+
+
+```{r}
+
+example3 <- data.frame(temperature = c(1:1000)) %>% 
+                      mutate(m = 5.7 * (10^-2) * temperature^4,
+                             lamda = 2898/temperature)
+example3_plot <- ggplot(data = example3) +
+  geom_point(aes(x = temperature, y = lamda))
+
+library(patchwork)
+
+example1_plot + example3_plot
+```
+
